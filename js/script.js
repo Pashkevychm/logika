@@ -38,7 +38,7 @@ function renderProducts(items) {
                 <button type="button" class="btn btn-primary">До кошику</button>
             </article>
         `
-        productsContainer.innerHTML +=productHTML
+        productsContainer.innerHTML += productHTML
     })
 }
 
