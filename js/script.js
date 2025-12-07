@@ -1,15 +1,15 @@
 const products = [
-    { id: 1, type: "phone", name: "iPhone 13", image: "img/Frame 612.png", description: "Смартфон iPhone 13 з OLED-дисплеєм.", price: 12000 },
-    { id: 2, type: "laptop", name: "MacBook Air", image: "img/Frame 604.png", description: "Легкий ноутбук MacBook Air з процесором M1.", price: 23000 },
-    { id: 3, type: "accessory", name: "Gammaxx L240 ARGB", image: "img/gammaxx-l240-argb-1-500x500 1.png", description: "Рідинне охолодження DeepCool Gammaxx L240 ARGB.", price: 40000 },
-    { id: 4, type: "monitor", name: "G27CQ4 Monitor", image: "img/g27cq4-500x500 1.png", description: "27-дюймовий вигнутий геймерський монітор 165Hz.", price: 44999 },
-    { id: 5, type: "accessory", name: "GP11 PRD3 Mouse", image: "img/GP11_PRD3 1.png", description: "Геймерська миша GP11 PRD3 з RGB.", price: 1000 },
+    { id: 1, type: "phone", name: "iPhone 13", image: "img/Frame 612.png", description: "OLED-дисплей, A15 Bionic.", price: 12000 },
+    { id: 2, type: "laptop", name: "MacBook Air", image: "img/Frame 604.png", description: "Процесор M1, легкий корпус.", price: 23000 },
+    { id: 3, type: "accessory", name: "Gammaxx L240 ARGB", image: "img/gammaxx-l240-argb-1-500x500 1.png", description: "Рідинне охолодження DeepCool.", price: 40000 },
+    { id: 4, type: "monitor", name: "G27CQ4 Monitor", image: "img/g27cq4-500x500 1.png", description: "27 дюймів, 165Hz.", price: 44999 },
+    { id: 5, type: "accessory", name: "GP11 PRD3 Mouse", image: "img/GP11_PRD3 1.png", description: "Геймерська миша з RGB.", price: 1000 },
 ];
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // =======================
-// ФУНКЦІЇ КОШИКА
+// Кошик
 // =======================
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -18,19 +18,16 @@ function saveCart() {
 
 function addToCart(id) {
     let found = cart.find(item => item.id === id);
-    if (found) {
-        found.count++;
-    } else {
-        const product = products.find(p => p.id === id);
-        cart.push({ ...product, count: 1 });
-    }
+    if (found) { found.count++; } 
+    else { cart.push({ ...products.find(p => p.id === id), count: 1 }); }
     saveCart();
-    alert("Товар додано в кошик!");
+    renderCart();
 }
 
 function updateCount(id, value) {
     let item = cart.find(p => p.id === id);
     item.count = Number(value);
+    if (item.count <= 0) removeFromCart(id);
     saveCart();
     renderCart();
 }
@@ -50,7 +47,7 @@ function updateCartCount() {
 }
 
 // =======================
-// РЕНДЕР ТОВАРІВ
+// Рендер товарів
 // =======================
 function renderProducts(items) {
     const container = document.querySelector(".products-div");
@@ -88,11 +85,11 @@ function applyFilters() {
 }
 
 // =======================
-// РЕНДЕР КОШИКА
+// Рендер кошика
 // =======================
 function renderCart() {
-    const cartBox = document.querySelector("#cart-container");
-    const totalBox = document.querySelector("#total");
+    const cartBox = document.getElementById("cart-container");
+    const totalBox = document.getElementById("total");
     if (!cartBox) return;
 
     if (cart.length === 0) {
@@ -114,7 +111,7 @@ function renderCart() {
                     <button class="btn btn-secondary btn-sm" onclick="updateCount(${item.id}, ${item.count - 1})">-</button>
                     <input type="number" min="1" value="${item.count}" class="quantity" onchange="updateCount(${item.id}, this.value)">
                     <button class="btn btn-secondary btn-sm" onclick="updateCount(${item.id}, ${item.count + 1})">+</button>
-                    <button class="btn btn-danger" onclick="removeFromCart(${item.id})">✖</button>
+                    <button class="btn btn-danger btn-sm" onclick="removeFromCart(${item.id})">✖</button>
                 </div>
             </div>
         `;
@@ -125,12 +122,22 @@ function renderCart() {
 }
 
 // =======================
+// Відкриття/закриття вкладки кошика
+// =======================
+const openBtn = document.getElementById("openCartBtn");
+const closeBtn = document.getElementById("closeCartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+
+openBtn.addEventListener("click", () => cartSidebar.classList.add("open"));
+closeBtn.addEventListener("click", () => cartSidebar.classList.remove("open"));
+
+// =======================
 // Автозапуск
 // =======================
 renderProducts(products);
 renderCart();
 
-// Фільтри та пошук
+// Події фільтрів
 document.getElementById("filterType").addEventListener("change", applyFilters);
 document.getElementById("sortPrice").addEventListener("change", applyFilters);
 document.getElementById("searchBtn").addEventListener("click", applyFilters);

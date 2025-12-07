@@ -59,23 +59,37 @@ header {
     padding: 10px;
     border-radius: 10px;
     border: 2px solid #512424;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 .cart-item img {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
 }
 
 .cart-item input.quantity {
-    width: 60px;
+    width: 50px;
 }
 
-.total {
-    margin-top: 20px;
-    font-size: 22px;
+/* Бокова панель кошика */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    height: 100%;
+    background-color: #785959;
+    padding: 20px;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.3);
+    transition: right 0.3s;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.cart-sidebar.open {
+    right: 0;
 }
