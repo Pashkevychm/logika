@@ -1,5 +1,5 @@
 const products = [
-    { id: 1, type: "phone", name: "iPhone 13", image: "img/Frame 612.png", description: "OLED дисплей, A15 Bionic", price: 12000, discount: 0.1, views: 5 },
+    { id: 1, type: "accessory", name: "Клавіатура", image: "img/Frame 612.png", description: "OLED дисплей, A15 Bionic", price: 12000, discount: 0.1, views: 5 },
     { id: 2, type: "phone", name: "Samsung Galaxy S21", image: "img/s21.png", description: "AMOLED дисплей, Exynos 2100", price: 11000, discount: 0.05, views: 3 },
     { id: 3, type: "phone", name: "Xiaomi Mi 11", image: "img/mi11.png", description: "Snapdragon 888, AMOLED", price: 9500, discount: 0.15, views: 7 },
     { id: 4, type: "laptop", name: "MacBook Air", image: "img/Frame 604.png", description: "Apple M1, легкий корпус", price: 23000, discount: 0.1, views: 2 },
