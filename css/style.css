@@ -93,3 +93,56 @@ header {
 .cart-sidebar.open {
     right: 0;
 }
+/* Анімація кошика */
+@keyframes cartPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+        background-color: #ffc107;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cart-animate {
+    animation: cartPulse 0.5s ease;
+}
+
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #198754;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s, transform 0.4s;
+    z-index: 2000;
+    font-weight: bold;
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateY(-10px);
+    pointer-events: auto;
+}
+
+.fly-img {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    z-index: 1500;
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s;
+}
+
+.cart-count-pulse {
+    animation: cartPulse 0.4s ease;
+}
