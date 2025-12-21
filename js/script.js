@@ -10,6 +10,15 @@ const products = [
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+const logo = document.getElementById('logo');
+const logoInfo = document.getElementById('logoInfo');
+
+logo.addEventListener('click', (e) => {
+    e.preventDefault(); // щоб не переходило по href
+    logoInfo.classList.toggle('show');
+});
+
+
 // =======================
 // Збереження кошика
 // =======================
