@@ -1,68 +1,16 @@
-/* --- Загальні стилі --- */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #ffffff;
-    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Темна тема */
-.dark-theme {
-    background-color: #121212;
-    color: #eee;
-}
-
-.dark-theme header,
-.dark-theme footer {
-    background-color: #1f1f1f;
-}
-
-/* --- Header --- */
+/* Header */
 header {
     background-color: rgb(44, 116, 116);
     padding: 10px 40px;
 }
 
-/* Логотип */
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: #ffffff;
-    transition: transform 0.3s, color 0.3s;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.navbar-brand:hover {
-    transform: scale(1.2) rotate(-5deg);
-    color: #ffc107;
-}
-
-/* Прихована інформація під логотипом */
-.logo-info {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 20px;
-    background-color: #785959;
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    width: 250px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform: scale(0.9);
-    opacity: 0;
-    z-index: 1000;
-}
-
-.logo-info.show {
-    display: block;
-    transform: scale(1);
-    opacity: 1;
-}
-
-/* --- Buttons --- */
+/* Buttons */
 .btn {
     background: #bdbcb9;
     padding: 10px 15px;
@@ -70,28 +18,20 @@ header {
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;
-    transition: transform 0.2s, background 0.2s;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-    background-color: #ffc107;
-}
-
-/* --- Контейнер --- */
 .container {
     padding: 20px;
 }
 
-/* --- Products grid --- */
+/* Products grid */
 .products-div {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
 }
 
-/* --- Product card --- */
+/* Product card */
 .product {
     width: 260px;
     background: #785959;
@@ -99,13 +39,11 @@ header {
     border-radius: 10px;
     text-align: center;
     border: 1px solid #766161;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
+    transition: transform 0.3s;
 }
 
 .product:hover {
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transform: translateY(-5px);
 }
 
 .product img {
@@ -113,14 +51,9 @@ header {
     height: 200px;
     object-fit: contain;
     margin-bottom: 10px;
-    transition: transform 0.3s;
 }
 
-.product:hover img {
-    transform: scale(1.1) rotate(-2deg);
-}
-
-/* --- Cart items --- */
+/* Cart items */
 .cart-item {
     background: #645a5a;
     padding: 10px;
@@ -142,7 +75,7 @@ header {
     width: 50px;
 }
 
-/* --- Бокова панель кошика --- */
+/* Бокова панель кошика */
 .cart-sidebar {
     position: fixed;
     top: 0;
@@ -160,19 +93,24 @@ header {
 .cart-sidebar.open {
     right: 0;
 }
-
-/* --- Анімація кошика --- */
+/* Анімація кошика */
 @keyframes cartPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); background-color: #ffc107; }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+        background-color: #ffc107;
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .cart-animate {
     animation: cartPulse 0.5s ease;
 }
 
-/* --- Toast повідомлення --- */
 .toast-notification {
     position: fixed;
     bottom: 20px;
@@ -195,30 +133,16 @@ header {
     pointer-events: auto;
 }
 
-/* --- Фільтри та сортування --- */
-.form-select:hover {
-    transform: scale(1.05);
-    border-color: #ffc107;
-    transition: transform 0.2s, border-color 0.2s;
-}
-
-/* --- Кнопка «повернутись вгору» --- */
-#scrollTopBtn {
+.fly-img {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-    z-index: 1000;
-    background-color: #ffc107;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.3s;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    z-index: 1500;
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s;
 }
 
-#scrollTopBtn:hover {
-    transform: scale(1.2);
+.cart-count-pulse {
+    animation: cartPulse 0.4s ease;
 }
